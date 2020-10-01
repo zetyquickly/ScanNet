@@ -273,7 +273,9 @@ def assign_instances_for_scan(pred_file, gt_file, pred_path):
             continue
         label_name = ID_TO_LABEL[label_id]
         # read the mask
-        pred_mask = util_3d.load_ids(pred_mask_file)
+        pred_mask_idx = util_3d.load_ids(pred_mask_file)
+        pred_mask= np.zeros_like(gt_ids).astype(np.int32)
+        pred_mask[pred_mask_idx] = 1
         if len(pred_mask) != len(gt_ids):
             util.print_error('wrong number of lines in ' + pred_mask_file + '(%d) vs #mesh vertices (%d), please double check and/or re-download the mesh' % (len(pred_mask), len(gt_ids)))
         # convert to binary
