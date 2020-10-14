@@ -282,7 +282,8 @@ int main(int argc, const char** argv) {
     const string baseName = plyFile.substr(0, plyFile.find_last_of("."));
     const int lastslash = plyFile.find_last_of("/");
     const string scanId = lastslash > 0 ? baseName.substr(lastslash) : baseName;
-    string segFile = baseName + "." + std::to_string(kthr) + ".segs.json";
+    // string segFile = baseName + "." + std::to_string(kthr) + ".segs.json";
+    string segFile = baseName + ".regions.json";
     writeToJSON(segFile, scanId, kthr, segMinVerts, comps);
     printf("Segmentation written to %s with %lu segments\n", segFile.c_str(), comp_indices.size());
   }
